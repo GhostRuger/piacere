@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load product_extras %}
+
+
+
+{% block content %}
+
+<div class="col-3 mr-5 mt-3">
+{% if product.image %}
+    <img src="{{product.image.url}}" alt="Imagen del producto" with="250" height="300">
+
+{% endif %}
+</div>
+
+<div class="col mt-3">
+    <div class="h3 font-weight-bold text-success">
+    
+    {{quantity | quantity_add_format }} al carrito
+    </div>
+    <div class="h3 mt-5 alert alert-info">
+        <a href="{% url 'products:product' product.slug %}">
+        {{product.title}}
+    </a>
+    <div class=" h5 font-weight-bold text-danger mt-3">
+        {{product.price | price_format }}
+
+    </div>
+    <div class="mt-5">
+    <a href="{% url 'carts:cart' %}" class="btn btn-warning">Ver Carrito</a>
+    </div>
+        <div class="mt-2">
+     <a href="{% url 'index' %}" class="btn btn-success">Seguir comprando</a>
+    </div>
+
+</div>
+
+{% endblock  %}
